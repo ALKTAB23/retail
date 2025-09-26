@@ -22,7 +22,7 @@ class PosConfig(models.Model):
     sh_lock_timer = fields.Integer(string='Auto Lock Timer (sec)', default=60)
 
     sh_pos_bag_charges = fields.Boolean(string='Enable Bag Charges')
-    sh_carry_bag_category = fields.Many2one('product.category', string='Carry Bag Category')
+    sh_carry_bag_category = fields.Many2one('pos.category', string='Carry Bag Category')
 
     enable_pos_item_counter = fields.Boolean(string='Enable Total Item Counter')
     enable_pos_qty_counter = fields.Boolean(string='Enable Total Qty Counter')
@@ -103,7 +103,7 @@ class PosConfig(models.Model):
     pos_select_purchase_state = fields.Selection([('draft', 'Draft'), ('confirm', 'Confirm')], string='Select Purchase State', default='draft')
     pos_sh_allow_global_discount = fields.Boolean(string="Allow Global Discount")
     pos_sh_allow_order_line_discount = fields.Boolean(string="Allow Order Line Discount")
-    pos_sh_carry_bag_category = fields.Many2one('product.category', string="Carry Bag Category")
+    pos_sh_carry_bag_category = fields.Many2one('pos.category', string="Carry Bag Category")
     pos_sh_close_popup_after_single_selection = fields.Boolean(string="Close Popup After Single Selection")
     pos_sh_customer_discount = fields.Char(string="Default POS Discount")
     pos_sh_customer_order_history = fields.Boolean(string="Customer Order History")

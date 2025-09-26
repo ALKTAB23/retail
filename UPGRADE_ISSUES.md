@@ -2,7 +2,39 @@
 
 ## ⚠️ المشاكل الشائعة وحلولها
 
-### 1. مشكلة XPath في تقارير نقاط البيع
+### 1. مشكلة res.config.settings.sh_carry_bag_category
+
+**الخطأ:**
+```
+ValueError: Wrong value for res.config.settings.sh_carry_bag_category: product.category()
+```
+
+**السبب:** تعارض في نوع البيانات بين `product.category` و `pos.category`
+
+**الحل الفوري:**
+```bash
+# تشغيل Odoo shell لتنظيف البيانات
+sudo -u odoo python3 /opt/odoo18/odoo-bin shell -d your_database_name -c /etc/odoo18.conf
+```
+
+```python
+# في Odoo shell، نفّذ هذا الكود:
+# إزالة إعدادات معطوبة
+env['res.config.settings'].sudo().search([]).unlink()
+
+# إصلاح POS configs مع categories خاطئة  
+for config in env['pos.config'].sudo().search([]):
+    config.write({
+        'sh_carry_bag_category': False,
+        'pos_sh_carry_bag_category': False
+    })
+env.cr.commit()
+exit()
+```
+
+**الحل التلقائي:** تم إنشاء migration script سيعمل تلقائياً في الترقية القادمة
+
+### 2. مشكلة XPath في تقارير نقاط البيع
 
 **الخطأ:**
 ```
