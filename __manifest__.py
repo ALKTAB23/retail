@@ -91,7 +91,8 @@
 
         # profit report
         "security/import_pos_groups.xml",
-        "sh_pos_profit/report/report_pos_sales_details_templates.xml",
+        # NOTE: Temporarily commented out due to XPath compatibility issues with Odoo 18
+        # "sh_pos_profit/report/report_pos_sales_details_templates.xml",
         "sh_import_pos/wizard/import_pos_wizard_views.xml",
         "sh_import_pos/views/pos_views.xml",
 
