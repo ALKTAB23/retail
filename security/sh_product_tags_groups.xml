@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- تصنيف اختياري لعرض الميزة ضمن فئة المنتجات -->
+    <record id="sh_product_tags_category" model="ir.module.category">
+        <field name="name">Enable Product Mass Tags</field>
+        <field name="sequence">60</field>
+    </record>
+
+    <!-- الجروب الذي سنظهره في الإعدادات عبر boolean_toggle -->
+    <record id="group_sh_product_tags" model="res.groups">
+        <field name="name">Product Tags</field>
+        <field name="category_id" ref="sh_pos_all_in_one_retail.sh_product_tags_category"/>
+        <!-- لا نربط مستخدمين هنا لتفادي مشاكل أذونات/وجود xml-id -->
+    </record>
+
+    <!-- (اختياري) إن كنت تحتاج جروب "User" احتفظ به -->
+    <record id="sh_product_tags_user_id" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="sh_pos_all_in_one_retail.sh_product_tags_category"/>
+        <!-- يُفضل عدم ربط base.user_root/base.user_admin مباشرة -->
+    </record>
+</odoo>
+

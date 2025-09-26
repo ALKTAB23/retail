@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_order_inherit_form_view_clean" model="ir.ui.view">
+        <field name="name">pos.order.inherit.form.view.clean</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <!-- حقن داخل قائمة سطور الطلب (list أو tree) بدون الاعتماد على product_uom_id -->
+            <xpath expr="//field[@name='lines']/*[self::list or self::tree]" position="inside">
+                <!-- احذف السطرين التاليين إذا لم تكن الحقول معرفة على pos.order.line -->
+                <field name="secondary_unit_id" optional="show"/>
+                <field name="secondary_qty" optional="show"/>
+            </xpath>
+            <!-- احتياطي إضافي إن كان القالب يستخدم list فقط -->
+            <xpath expr="//field[@name='lines']//list" position="inside">
+                <field name="secondary_unit_id" optional="show"/>
+                <field name="secondary_qty" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_pos_line_pricelist_res_config_settings" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sh_pos_create_so</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <!-- أضفنا قسماً جديداً داخل تطبيق General Settings -->
+            <xpath expr="//app[@name='general_settings']" position="inside">
+                <block title="POS Line Pricelist" name="pos_line_pricelist_setting">
+                    <setting groups="base.group_multi_currency,product.group_product_pricelist">
+                        <label for="pos_sh_pricelist_for_code"/>
+                        <field name="pos_sh_pricelist_for_code" widget="many2many_tag"/>
+                        <div class="content-hint">
+                            Default pricelists to use for POS line codes.
+                        </div>
+                    </setting>
+                    <setting groups="base.group_multi_currency,product.group_product_pricelist">
+                        <label for="pos_sh_min_pricelist_value"/>
+                        <field name="pos_sh_min_pricelist_value" widget="many2many_tag"/>
+                        <div class="content-hint">
+                            Minimum pricelist values allowed.
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

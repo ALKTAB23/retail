@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <record id="sh_pos_weight_product_view_inherit" model="ir.ui.view">
+        <field name="name">sh.pos.weight.order.inherit<!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+        <field name="model">pos.order<!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='discount']" position="after">
+                <field name="product_weight" optional="hide"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+                <field name="total_product_weight" optional="hide"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+                <field name="product_volume" optional="hide"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+                <field name="total_product_volume" optional="hide"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+            </xpath>
+            <xpath expr="//field[@name='amount_paid']" position="after">
+                <field name="enable_product_weight" invisible="1"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+                <field name="enable_product_volume" invisible="1"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+                <field name="total_product_weight" optional="hide" invisible="not enable_product_weight"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+                <field name="total_product_volume" optional="hide" invisible="not enable_product_volume"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+            </xpath>
+        <!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+    </record>
+</odoo>

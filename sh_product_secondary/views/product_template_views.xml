@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit product.template form safely on Odoo 18 -->
+    <record id="sh_stock_product_template_inherit_view" model="ir.ui.view">
+        <field name="name">sh.stock.product.template.inherit.view</field>
+        <field name="model">product.template</field>
+        <!-- ملاحظة: هذا هو الـ view الشائع في Odoo 18؛
+             إن كان لديك View مختلف، استبدل المرجع أدناه بمرجع الـ parent الصحيح لديك -->
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+
+            <!-- ✅ نحقن داخل الهيدر مباشرة (بدل الارتكاز على زر قديم غير موجود) -->
+            <xpath expr="//form/header" position="inside">
+
+                <!-- زر تحديث الكمية (إن كان ضمن ميزاتك) -->
+                <button name="action_update_quantity_on_hand"
+                        string="Update Quantity"
+                        type="object"
+                        invisible="type == 'service'"
+                        groups="stock.group_stock_user"/>
+
+                <!-- زر Quants: نفس الوظيفة لكن دون الاعتماد على وجود زر سابق في الـ parent -->
+                <button name="action_open_quants"
+                        string="Quants"
+                        type="object"
+                        class="oe_link"
+                        invisible="type == 'service'"
+                        groups="stock.group_stock_user"/>
+
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
+

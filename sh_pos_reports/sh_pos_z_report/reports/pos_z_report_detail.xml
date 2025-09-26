@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- Z Report من جلسة POS -->
+  <record id="pos_z_report_detail" model="ir.actions.report">
+    <field name="name">Z Report</field>
+    <field name="model">pos.session</field>
+    <field name="report_type">qweb-pdf</field>
+    <!-- يجب أن يكون هذا الـ external id موجود كـ <template> في qweb -->
+    <field name="report_name">sh_pos_all_in_one_retail.report_zdetails</field>
+    <!-- اسم الملف عند الطباعة -->
+    <field name="print_report_name">'Z_Report_%s' % (object.name or 'Session')</field>
+  </record>
+
+  <!-- POS Z Report (نفس الموديل المستهدف هو pos.session) -->
+  <record id="sh_pos_z_report_backend" model="ir.actions.report">
+    <field name="name">POS Z Report</field>
+    <field name="model">pos.session</field>
+    <field name="report_type">qweb-pdf</field>
+    <!-- يجب أن يتطابق مع qweb template external id -->
+    <field name="report_name">sh_pos_all_in_one_retail.sh_pos_z_report_doc</field>
+    <field name="print_report_name">'POS_Z_Report_%s' % (object.name or 'Session')</field>
+  </record>
+
+  <!-- ملاحظة: الأفضل وضع الجروب في ملف security مستقل،
+       لكن إن أردتها هنا مؤقتاً فهذا تعريف صحيح بدون تعارض مع الـ schema -->
+  <record id="group_sh_pos_z_report" model="res.groups">
+    <field name="name">POS Z Report</field>
+    <field name="category_id" ref="base.module_category_hidden"/>
+  </record>
+
+</odoo>
+

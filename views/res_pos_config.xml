@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="res_pos_retail_settings_view" model="ir.ui.view">
+    <field name="name">res.config.settings.view.form.retail.pos</field>
+    <field name="model">res.config.settings</field>
+    <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+    <field name="priority">30</field>
+    <field name="arch" type="xml">
+      <!-- نحقن داخل تطبيق POS في صفحة الإعدادات -->
+      <xpath expr="//app[@name='point_of_sale' or contains(@data-string,'Point of Sale')]" position="inside">
+
+        <block title="Retail Configuration" name="retail_block">
+
+          <!-- اختيار نقطة البيع التي ستعدل إعداداتها -->
+          <setting id="retail_pos_selector" help="Choose the PoS whose settings you want to edit.">
+            <label for="pos_config_id"/>
+            <div class="content-group">
+              <field name="pos_config_id"
+                     required="1"
+                     options="{'no_open': True, 'no_create': True}"/>
+            </div>
+          </setting>
+
+          <!-- Shortcuts & Payments -->
+          <setting id="retail_shortcuts_payments">
+            <label for="payment_method_id"/>
+            <div class="content-group">
+              <field name="payment_method_id" options="{'no_create': True, 'no_create_edit': True}"/>
+              <field name="sh_payment_shortcut_screen_type"/>
+            </div>
+          </setting>
+
+          <!-- Defaults -->
+          <setting id="retail_defaults">
+            <label for="sh_enable_default_customer"/>
+            <div class="content-group">
+              <field name="sh_enable_default_customer"/>
+              <field name="sh_default_customer_id"
+                     modifiers="{'invisible': [['sh_enable_default_customer','=',False]]}"/>
+              <field name="sh_enable_default_invoice"/>
+            </div>
+          </setting>
+
+          <!-- Auto Lock -->
+          <setting id="retail_auto_lock">
+            <label for="sh_enable_auto_lock"/>
+            <div class="content-group">
+              <field name="sh_enable_auto_lock"/>
+              <field name="sh_lock_timer"
+                     modifiers="{'invisible': [['sh_enable_auto_lock','=',False]]}"/>
+            </div>
+          </setting>
+
+          <!-- Bag Charges -->
+          <setting id="retail_bag_charges">
+            <label for="sh_pos_bag_charges"/>
+            <div class="content-group">
+              <field name="sh_pos_bag_charges"/>
+              <field name="sh_carry_bag_category"
+                     modifiers="{'invisible': [['sh_pos_bag_charges','=',False]]}"/>
+            </div>
+          </setting>
+
+          <!-- Barcode / Weight / Volume -->
+          <setting id="retail_barcode_weight_volume">
+            <label for="sh_enable_multi_barcode"/>
+            <div class="content-group">
+              <field name="sh_enable_multi_barcode"/>
+              <field name="enable_weight"/>
+              <field name="product_weight_receipt"
+                     modifiers="{'invisible': [['enable_weight','=',False]]}"/>
+              <field name="enable_volume"/>
+              <field name="product_volume_receipt"
+                     modifiers="{'invisible': [['enable_volume','=',False]]}"/>
+            </div>
+          </setting>
+
+          <!-- Counters & Quick Reports -->
+          <setting id="retail_counters_reports">
+            <label for="enable_pos_item_counter"/>
+            <div class="content-group">
+              <field name="enable_pos_item_counter"/>
+              <field name="enable_pos_item_report"
+                     modifiers="{'invisible': [['enable_pos_item_counter','=',False]]}"/>
+              <field name="enable_pos_qty_counter"/>
+              <field name="enable_pos_qty_report"
+                     modifiers="{'invisible': [['enable_pos_qty_counter','=',False]]}"/>
+            </div>
+          </setting>
+
+          <!-- Discounts -->
+          <setting id="retail_discounts">
+            <label for="sh_apply_custom_discount"/>
+            <div class="content-group">
+              <field name="sh_apply_custom_discount"/>
+              <field name="sh_apply_both_discount"/>
+              <field name="sh_discount_code"/>
+            </div>
+          </setting>
+
+          <!-- Cart helpers -->
+          <setting id="retail_cart_helpers">
+            <label for="sh_remove_all_item"/>
+            <div class="content-group">
+              <field name="sh_remove_all_item"/>
+              <field name="sh_remove_single_item"/>
+            </div>
+          </setting>
+
+          <!-- Product helpers & Bundle -->
+          <setting id="retail_product_helpers">
+            <label for="enable_product_suggestion"/>
+            <div class="content-group">
+              <field name="enable_product_suggestion"/>
+              <field name="enable_refund"/>
+              <field name="enable_info"/>
+              <field name="enable_note"/>
+              <field name="enable_change_uom"/>
+              <field name="enable_quick_order"/>
+              <field name="enable_show_order"/>
+              <field name="enable_auto_pro_uom"/>
+              <field name="enable_variant_popup"/>
+              <field name="enable_product_bundle"/>
+            </div>
+          </setting>
+
+        </block>
+      </xpath>
+    </field>
+  </record>
+</odoo>
+

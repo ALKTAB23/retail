@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_pos_order_custom">
+        <t t-call="web.external_layout_standard">
+            <t t-set="docs" t-value="docs"/>
+            <main class="o_report">
+                <h2>POS Sales Details (Enhanced)</h2>
+                <table class="table table-sm o_main_table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Order</th>
+                            <th>Customer</th>
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th>Subtotal (w/o Tax)</th>
+                            <th>Total</th>
+                            <th>Gross Profit</th>
+                            <th>Payment Method</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="docs" t-as="l">
+                            <td><span t-esc="l.date"/></td>
+                            <td><span t-esc="l.order_id.display_name"/></td>
+                            <td><span t-esc="l.partner_id.display_name or ''"/></td>
+                            <td><span t-esc="l.product_id.display_name"/></td>
+                            <td class="text-right"><span t-esc="l.product_qty"/></td>
+                            <td class="text-right"><span t-esc="l.price_subtotal_excl"/></td>
+                            <td class="text-right"><span t-esc="l.price_total"/></td>
+                            <td class="text-right"><span t-esc="l.margin"/></td>
+                            <td><span t-esc="l.payment_method_id.display_name or ''"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </main>
+        </t>
+    </template>
+
+    <record id="action_report_pos_order_custom" model="ir.actions.report">
+        <field name="name">POS Sales Details (Enhanced)</field>
+        <field name="model">report.pos.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sh_pos_all_in_one_retail.report_pos_order_custom</field>
+        <field name="report_file">sh_pos_all_in_one_retail.report_pos_order_custom</field>
+        <field name="print_report_name">
+            'POS_Sales_Details_Enhanced_' + (object.date or '').replace(':','-')
+        </field>
+    </record>
+</odoo>
+

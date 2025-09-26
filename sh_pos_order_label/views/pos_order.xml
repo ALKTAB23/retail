@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+     <record id="sh_pos_order_label_form" model="ir.ui.view">
+          <field name="name">sh.pos.order.label.form.inherit<!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+          <field name="model">pos.order<!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+          <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+          <field name="arch" type="xml">
+               <xpath expr="//field[@name='full_product_name']" position="replace">
+                    <field name="add_section" invisible="not add_section"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+                    <field name="full_product_name" invisible="add_section"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+               </xpath>
+               <xpath expr="//field[@name='qty']" position="replace">
+                    <field name="qty" invisible="add_section"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+               </xpath>
+               <xpath expr="//field[@name='price_unit']" position="replace">
+                    <field name="price_unit" invisible="add_section"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+               </xpath>
+               <xpath expr="//field[@name='discount']" position="replace">
+                    <field name="discount" invisible="add_section"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+               </xpath>
+               <xpath expr="//field[@name='tax_ids_after_fiscal_position']" position="replace">
+                    <field name="tax_ids_after_fiscal_position" invisible="add_section"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+               </xpath>
+               <xpath expr="//field[@name='price_subtotal']" position="replace">
+                    <field name="price_subtotal" invisible="add_section"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+               </xpath>
+               <xpath expr="//field[@name='price_subtotal_incl']" position="replace">
+                    <field name="price_subtotal_incl" invisible="add_section"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+               </xpath>
+          <!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+     </record>
+</odoo>

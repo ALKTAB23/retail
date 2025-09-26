@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_product_tags_id_res_config_settings_view_crm_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.product.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <!-- الاسم الصحيح فى Odoo 18 -->
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="priority" eval="90"/>
+        <field name="arch" type="xml">
+            <!-- أضفنا قسماً جديداً داخل General Settings -->
+            <xpath expr="//app[@name='general_settings']" position="inside">
+                <block title="Product Tags" name="product_tags_setting">
+                    <setting>
+                        <field name="group_sh_product_tags" widget="boolean_toggle"/>
+                        <div class="content-hint">
+                            Enable product tagging features.
+                        </div>
+                    </setting>
+                    <setting title="Default tags for newly created products">
+                        <field name="product_tags_id" widget="many2many_tags"
+                               options="{'no_quick_create':False, 'no_create_edit':False}"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

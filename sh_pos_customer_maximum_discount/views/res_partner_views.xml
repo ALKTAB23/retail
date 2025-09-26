@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+
+    <record id="sh_pos_customer_view_inherit_form" model="ir.ui.view">
+        <field name="name">sh.pos.customer.maximum.discount.form<!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+        <field name="model">res.partner<!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+        <field name="inherit_id" ref="base.view_partner_form"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+        <field name="arch" type="xml">
+            <field name="vat" position="after">
+                <field name="sh_enable_max_dic" class="mt16"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+                <field class="" name="sh_maximum_discount" invisible="sh_enable_max_dic == False"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+                <field name="sh_discount_type" widget="radio" invisible="sh_enable_max_dic == False"><!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+            <!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+        <!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+    </record>
+    
+</odoo>

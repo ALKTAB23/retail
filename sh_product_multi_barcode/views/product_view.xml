@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <record id="sh_product_search_view" model="ir.ui.view">
+        <field name="name">product.template<!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+        <field name="model">product.template<!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <field name="attribute_line_ids" position="after">
+                <field name="barcode_line_ids" string="Multi Barcodes"/>
+            <!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+            <field name="name" position="replace">
+                <field name="name" string="Product" filter_domain="['|', '|', '|', '|',('default_code', 'ilike', self), ('product_variant_ids.default_code', 'ilike', self),('name', 'ilike', self), ('barcode', 'ilike', self), ('barcode_line_ids', 'ilike', self)]"/>
+            <!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+        <!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+    </record>
+    <record id="sh_product_template_only_form_inherit_view" model="ir.ui.view">
+        <field name="name">sh.product.template.only.form.inherit.view<!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+        <field name="model">product.product<!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//page[last()]" position="after">
+                <page name="barcodes" string="Dynamic Product">
+                    <field name="barcode_line_ids" widget="one2many_list">
+                        <list string="Barcodes" editable="bottom">
+                            <field name="name"/>
+                            <field name="unit" domain="[('category_id','=',parent.uom_category_id)]"/>
+                            <field name="price_lst"/>
+                            <field name="price"/>
+                            <field name="available_item"/>
+                            <field name="negative_qty_price"/>
+                        </list>
+                    <!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='barcodes']" position="inside">
+                <field name="uom_category_id" invisible="1"/>
+            </xpath>
+        <!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+    </record>
+    <record id="sh_product_product_barcode_view" model="ir.ui.view">
+        <field name="name">sh.product.product.barcode.view<!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+        <field name="model">product.template<!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//page[last()]" position="after">
+                <page name="barcodes" string="Dynamic Product" invisible="product_variant_count &gt; 1">
+                    <field name="barcode_line_ids" widget="one2many_list">
+                        <list string="Barcodes" editable="bottom">
+                            <field name="name"/>
+                            <field name="unit" domain="[('category_id','=',parent.uom_category_id)]"/>
+                            <field name="price_lst"/>
+                            <field name="price"/>
+                            <field name="available_item"/>
+                            <field name="negative_qty_price"/>
+                        </list>
+                    <!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='barcodes']" position="inside">
+                <field name="uom_category_id" invisible="1"/>
+            </xpath>
+        <!-- TODO(v18): convert attrs/states to direct modifiers -->
+</field>
+    </record>
+</odoo>

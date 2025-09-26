@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Safe inherit for product.template form on Odoo 18 -->
+    <record id="sh_stock_product_template_inherit_view" model="ir.ui.view">
+        <field name="name">sh.stock.product.template.inherit.view</field>
+        <field name="model">product.template</field>
+        <!-- الشائع في Odoo 18 -->
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+
+            <!-- ✅ بدل الارتكاز على زر غير موجود:
+                 نحقن مباشرة داخل الهيدر الموجود دائماً -->
+            <xpath expr="//form/header" position="inside">
+
+                <!-- زر تحديث الكمية (إن كان ضمن ميزاتك) -->
+                <button name="action_update_quantity_on_hand"
+                        string="Update Quantity"
+                        type="object"
+                        invisible="not is_storable"
+                        groups="stock.group_stock_user"/>
+
+                <!-- زر Quants: نفس الوظيفة لكن بدون الاعتماد على وجود زر سابق -->
+                <button name="action_open_quants"
+                        string="Quants"
+                        type="object"
+                        class="oe_link"
+                        invisible="not is_storable"
+                        groups="stock.group_stock_user"/>
+
+                <!-- أمثلة لتحويل attrs/states القديمة إلى modifiers حديثة (استخدمها عند الحاجة):
+                     readonly="state != 'draft'"
+                     required="not company_id"
+                     invisible="not available_in_pos"
+                -->
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
+

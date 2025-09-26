@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_order_inherit_form_view" model="ir.ui.view">
+        <field name="name">pos.order.inherit.form.view</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+
+            <!-- ✅ نضيف الأعمدة الجديدة مباشرة داخل الـ list (أو tree) -->
+            <xpath expr="//field[@name='lines']/*[self::list or self::tree]" position="inside">
+                <field name="secondary_unit_id" optional="show"/>
+                <field name="secondary_qty" optional="show"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_pos_z_report_res_config_settings" model="ir.ui.view">
+        <field name="name">res.config.settings.inherit.sh_pos_z_report</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <!-- نضيف قسماً جديداً داخل General Settings -->
+            <xpath expr="//app[@name='general_settings']" position="inside">
+                <block title="POS Z Report" name="pos_z_report_setting">
+                    <setting>
+                        <field name="group_sh_pos_z_report" widget="boolean_toggle"/>
+                        <div class="content-hint">
+                            Enable Z-Report generation for POS sessions.
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

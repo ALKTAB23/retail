@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="view_pos_config_form" model="ir.ui.view">
+    <field name="name">pos.config.form.view.inherit.clean</field>
+    <field name="model">pos.config</field>
+    <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+    <field name="arch" type="xml">
+
+      <!-- ندخل في آخر الـ sheet لتفادي تراكب العناوين -->
+      <xpath expr="//sheet/*[last()]" position="after">
+        <div class="o_horizontal_separator">Retail Configuration</div>
+
+        <!-- حاوية مرتّبة بعمودين -->
+        <group col="2" name="retail_container">
+
+          <!-- عمود 1 -->
+          <group string="Shortcuts &amp; Payments">
+            <!-- إن كانت لديك حقول O2M للشورتكات غير معرّفة؛ اتركها الآن -->
+            <field name="payment_method_id" options="{'no_create': True, 'no_create_edit': True}"/>
+            <field name="sh_payment_shortcut_screen_type"/>
+          </group>
+
+          <group string="Defaults">
+            <field name="sh_enable_default_customer"/>
+            <field name="sh_default_customer_id"
+                   modifiers="{'invisible': [['sh_enable_default_customer','=',False]]}"/>
+            <field name="sh_enable_default_invoice"/>
+          </group>
+
+          <group string="Auto Lock">
+            <field name="sh_enable_auto_lock"/>
+            <field name="sh_lock_timer"
+                   modifiers="{'invisible': [['sh_enable_auto_lock','=',False]]}"/>
+          </group>
+
+          <!-- عمود 2 -->
+          <group string="Bag Charges">
+            <field name="sh_pos_bag_charges"/>
+            <field name="sh_carry_bag_category"
+                   modifiers="{'invisible': [['sh_pos_bag_charges','=',False]]}"/>
+          </group>
+
+          <group string="Barcode / Weight / Volume">
+            <field name="sh_enable_multi_barcode"/>
+            <field name="enable_weight"/>
+            <field name="product_weight_receipt"
+                   modifiers="{'invisible': [['enable_weight','=',False]]}"/>
+            <field name="enable_volume"/>
+            <field name="product_volume_receipt"
+                   modifiers="{'invisible': [['enable_volume','=',False]]}"/>
+          </group>
+
+          <group string="Counters &amp; Quick Reports">
+            <field name="enable_pos_item_counter"/>
+            <field name="enable_pos_item_report"
+                   modifiers="{'invisible': [['enable_pos_item_counter','=',False]]}"/>
+            <field name="enable_pos_qty_counter"/>
+            <field name="enable_pos_qty_report"
+                   modifiers="{'invisible': [['enable_pos_qty_counter','=',False]]}"/>
+          </group>
+
+          <!-- صف كامل لفيتشَر المنتجات -->
+          <group string="Product Helpers &amp; Bundle" colspan="2">
+            <field name="enable_product_suggestion"/>
+            <field name="enable_refund"/>
+            <field name="enable_info"/>
+            <field name="enable_note"/>
+            <field name="enable_change_uom"/>
+            <field name="enable_quick_order"/>
+            <field name="enable_show_order"/>
+            <field name="enable_auto_pro_uom"/>
+            <field name="enable_variant_popup"/>
+            <field name="enable_product_bundle"/>
+          </group>
+
+          <group string="Discounts" colspan="2">
+            <field name="sh_apply_custom_discount"/>
+            <field name="sh_apply_both_discount"/>
+            <field name="sh_discount_code"/>
+          </group>
+
+          <group string="Cart Helpers" colspan="2">
+            <field name="sh_remove_all_item"/>
+            <field name="sh_remove_single_item"/>
+          </group>
+
+        </group>
+      </xpath>
+
+    </field>
+  </record>
+</odoo>
+

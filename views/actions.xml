@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- نافذة لإدارة POS Shortcuts الخاصة بالـ POS المختار -->
+  <record id="action_pos_shortcut_screens" model="ir.actions.act_window">
+    <field name="name">POS Shortcuts</field>
+    <field name="res_model">sh.pos.shortcut.screen</field> <!-- غيّر الاسم لو موديلك مختلف -->
+    <field name="view_mode">tree,form</field>
+    <field name="context">{'default_pos_config_id': active_id}</field>
+    <field name="domain">[('pos_config_id', '=', context.get('pos_config_id') or active_id)]</field>
+    <field name="target">current</field>
+  </record>
+</odoo>
+

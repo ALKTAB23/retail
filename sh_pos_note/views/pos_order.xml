@@ -1,0 +1,21 @@
+<odoo>
+    <record id="sh_pos_order_line_pos_note" model="ir.ui.view">
+        <field name="name">pos.order.line.pos.note</field>
+        <field name="model">pos.order</field>
+        <!-- حافظ على inherit_id كما هو عندك -->
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/> 
+        <field name="arch" type="xml">
+            <!-- بدل هذا:
+            <xpath expr="//field[@name='note']" position="after">
+            -->
+            <xpath expr="//sheet" position="inside">
+                <group string="POS Notes">
+                    <!-- هنا ضع نفس المحتوى الذي كنت تضيفه بعد الـ note -->
+                    <!-- مثال: زر/حقول أو smart button أو whatever -->
+                    <!-- لو كنت تريد إظهار ملاحظات السطور، الأفضل تعديل view سطور الطلب (انظر 2) -->
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
